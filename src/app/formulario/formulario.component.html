@@ -1,0 +1,18 @@
+<div class="max-w-4xl mx-auto my-3 p-6 bg-blue-900 shadow-md rounded-lg">
+  <h2 class="text-2xl font-semibold mb-6 text-center">Formulario de Registro</h2>
+
+  <form [formGroup]="form" (ngSubmit)="enviarFormulario()" enctype="multipart/form-data">
+    <app-datos-personales />
+  
+    <app-documentos [onFileChange]="onFileChange.bind(this)" />
+  
+    <app-direccion [estados]="estados" [codigos]="codigos" />
+  
+    <app-informacion-adicional [niveles]="nivelesAcademicos" [ingresos]="ingresos" />
+  
+    <app-extras [onFileChange]="onFileChange.bind(this)" />
+  
+    <button type="submit">Enviar</button>
+  </form>
+  
+</div>

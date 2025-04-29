@@ -1,0 +1,11 @@
+<div [formGroup]="form">
+    <label>Cargar imagen de la Cédula</label>
+    <input type="file" (change)="onFileChange($event, 'cedulaFile')">
+  
+    <label>Cargar selfie</label>
+    <input type="file" (change)="onFileChange($event, 'selfieFile')">
+  
+    <label>Cargar imagen de RIF</label>
+    <input type="file" (change)="onFileChange($event, 'rifFile')">
+  </div>
+  

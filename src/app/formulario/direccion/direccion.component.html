@@ -1,0 +1,31 @@
+<div [formGroup]="form">
+    <label>Estado:</label>
+    <select formControlName="estado">
+      <option value="">Seleccione un estado</option>
+      <option *ngFor="let estado of estados" [value]="estado">{{ estado }}</option>
+    </select>
+  
+    <label>Ciudad:</label>
+    <input formControlName="ciudad" type="text">
+  
+    <label>Sector:</label>
+    <input formControlName="sector" type="text">
+  
+    <label>Dirección:</label>
+    <input formControlName="direccion" type="text">
+  
+    <label>Teléfono 1:</label>
+    <select formControlName="codigo1">
+      <option value="">Código</option>
+      <option *ngFor="let codigo of codigos" [value]="codigo">{{ codigo }}</option>
+    </select>
+    <input formControlName="telefono1" type="text">
+  
+    <label>Teléfono 2 (opcional):</label>
+    <select formControlName="codigo2">
+      <option value="">Código</option>
+      <option *ngFor="let codigo of codigos" [value]="codigo">{{ codigo }}</option>
+    </select>
+    <input formControlName="telefono2" type="text">
+  </div>
+  

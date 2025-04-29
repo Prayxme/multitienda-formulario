@@ -1,0 +1,51 @@
+<div [formGroup]="form">
+    <label>Vendedor:</label>
+    <input formControlName="vendedor" type="text">
+  
+    <label>Estado Civil:</label>
+    <select formControlName="estadoCivil">
+      <option value="">Seleccione</option>
+      <option value="Soltero">Soltero</option>
+      <option value="Casado">Casado</option>
+      <option value="Divorciado">Divorciado</option>
+    </select>
+  
+    <label>Rol en el hogar:</label>
+    <select formControlName="rolHogar">
+      <option value="">Seleccione</option>
+      <option value="Jefe">Jefe</option>
+      <option value="Cónyuge">Cónyuge</option>
+      <option value="Hijo(a)">Hijo(a)</option>
+    </select>
+  
+    <label>Personas en el hogar:</label>
+    <input formControlName="personas" type="number" min="1">
+  
+    <label>Tipo de vivienda:</label>
+    <select formControlName="vivienda">
+      <option value="">Seleccione</option>
+      <option value="Propia">Propia</option>
+      <option value="Alquilada">Alquilada</option>
+      <option value="Prestada">Prestada</option>
+    </select>
+  
+    <label>Nivel académico:</label>
+    <select formControlName="nivel">
+      <option value="">Seleccione</option>
+      <option *ngFor="let nivel of niveles" [value]="nivel">{{ nivel }}</option>
+    </select>
+  
+    <label>Ingreso mensual estimado:</label>
+    <select formControlName="ingreso">
+      <option value="">Seleccione</option>
+      <option *ngFor="let ingreso of ingresos" [value]="ingreso">{{ ingreso }}</option>
+    </select>
+  
+    <label>¿Realiza ventas?:</label>
+    <select formControlName="ventas">
+      <option value="">Seleccione</option>
+      <option value="Sí">Sí</option>
+      <option value="No">No</option>
+    </select>
+  </div>
+  
