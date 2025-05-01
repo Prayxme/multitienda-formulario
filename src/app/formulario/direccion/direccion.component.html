@@ -1,31 +1,54 @@
-<div [formGroup]="form">
-    <label>Estado:</label>
-    <select formControlName="estado">
+<div [formGroup]="form" class="space-y-6">
+  <!-- Estado -->
+  <div>
+    <label class="block text-sm font-medium text-gray-700">Estado</label>
+    <select
+      formControlName="estado"
+      class="mt-1 block w-full border rounded px-3 py-2 text-sm"
+    >
       <option value="">Seleccione un estado</option>
       <option *ngFor="let estado of estados" [value]="estado">{{ estado }}</option>
     </select>
-  
-    <label>Ciudad:</label>
-    <input formControlName="ciudad" type="text">
-  
-    <label>Sector:</label>
-    <input formControlName="sector" type="text">
-  
-    <label>Dirección:</label>
-    <input formControlName="direccion" type="text">
-  
-    <label>Teléfono 1:</label>
-    <select formControlName="codigo1">
-      <option value="">Código</option>
-      <option *ngFor="let codigo of codigos" [value]="codigo">{{ codigo }}</option>
-    </select>
-    <input formControlName="telefono1" type="text">
-  
-    <label>Teléfono 2 (opcional):</label>
-    <select formControlName="codigo2">
-      <option value="">Código</option>
-      <option *ngFor="let codigo of codigos" [value]="codigo">{{ codigo }}</option>
-    </select>
-    <input formControlName="telefono2" type="text">
+    <div *ngIf="form.get('estado')?.invalid && form.get('estado')?.touched" class="text-red-600 text-sm mt-1">
+      Este campo es requerido.
+    </div>
   </div>
-  
+
+  <!-- Ciudad -->
+  <div>
+    <label class="block text-sm font-medium text-gray-700">Ciudad</label>
+    <input
+      type="text"
+      formControlName="ciudad"
+      class="mt-1 block w-full border rounded px-3 py-2 text-sm"
+    />
+    <div *ngIf="form.get('ciudad')?.invalid && form.get('ciudad')?.touched" class="text-red-600 text-sm mt-1">
+      Este campo es requerido.
+    </div>
+  </div>
+
+  <!-- Sector -->
+  <div>
+    <label class="block text-sm font-medium text-gray-700">Sector</label>
+    <input
+      type="text"
+      formControlName="sector"
+      class="mt-1 block w-full border rounded px-3 py-2 text-sm"
+    />
+    <div *ngIf="form.get('sector')?.invalid && form.get('sector')?.touched" class="text-red-600 text-sm mt-1">
+      Este campo es requerido.
+    </div>
+  </div>
+
+  <!-- Dirección -->
+  <div>
+    <label class="block text-sm font-medium text-gray-700">Dirección</label>
+    <textarea
+      formControlName="direccion"
+      class="mt-1 block w-full border rounded px-3 py-2 text-sm"
+    ></textarea>
+    <div *ngIf="form.get('direccion')?.invalid && form.get('direccion')?.touched" class="text-red-600 text-sm mt-1">
+      Este campo es requerido.
+    </div>
+  </div>
+</div>

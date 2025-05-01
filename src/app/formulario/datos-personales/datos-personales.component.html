@@ -1,20 +1,80 @@
-<div [formGroup]="form">
-    <label>Primer Nombre:</label>
-    <input formControlName="primerNombre" type="text">
-  
-    <label>Segundo Nombre:</label>
-    <input formControlName="segundoNombre" type="text">
-  
-    <label>Primer Apellido:</label>
-    <input formControlName="primerApellido" type="text">
-  
-    <label>Segundo Apellido:</label>
-    <input formControlName="segundoApellido" type="text">
-  
-    <label>Cédula:</label>
-    <input formControlName="cedula" type="text">
-  
-    <label>Email:</label>
-    <input formControlName="email" type="email">
+<div [formGroup]="form" class="space-y-4">
+  <!-- Nombres en una fila en desktop, columna en móvil -->
+<div class="flex flex-col md:flex-row gap-4 mb-4">
+  <div class="w-full md:w-1/2">
+    <label class="block text-sm font-medium text-gray-700 mb-1">Primer Nombre</label>
+    <input
+      formControlName="primerNombre"
+      type="text"
+      class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+    <div *ngIf="form.get('primerNombre')?.touched && form.get('primerNombre')?.invalid" class="text-red-500 text-sm">
+      Este campo es obligatorio.
+    </div>
   </div>
-  
+
+  <div class="w-full md:w-1/2">
+    <label class="block text-sm font-medium text-gray-700 mb-1">Segundo Nombre</label>
+    <input
+      formControlName="segundoNombre"
+      type="text"
+      class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+  </div>
+</div>
+
+<!-- Apellidos -->
+<div class="flex flex-col md:flex-row gap-4 mb-4">
+  <div class="w-full md:w-1/2">
+    <label class="block text-sm font-medium text-gray-700 mb-1">Primer Apellido</label>
+    <input
+      formControlName="primerApellido"
+      type="text"
+      class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+    <div *ngIf="form.get('primerApellido')?.touched && form.get('primerApellido')?.invalid" class="text-red-500 text-sm">
+      Este campo es obligatorio.
+    </div>
+  </div>
+
+  <div class="w-full md:w-1/2">
+    <label class="block text-sm font-medium text-gray-700 mb-1">Segundo Apellido</label>
+    <input
+      formControlName="segundoApellido"
+      type="text"
+      class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+  </div>
+</div>
+
+<!-- Cédula y Email -->
+<div class="flex flex-col md:flex-row gap-4 mb-4">
+  <div class="w-full md:w-1/2">
+    <label class="block text-sm font-medium text-gray-700 mb-1">Cédula</label>
+    <input
+      formControlName="cedula"
+      type="text"
+      placeholder="Indique su número de cédula"
+      class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+    <div *ngIf="form.get('cedula')?.touched && form.get('cedula')?.invalid" class="text-red-500 text-sm">
+      <div *ngIf="form.get('cedula')?.errors?.['required']">Este campo es obligatorio.</div>
+    </div>
+  </div>
+
+  <div class="w-full md:w-1/2">
+    <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+    <input
+      formControlName="email"
+      type="email"
+      placeholder="ejemplo@correo.com"
+      class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+    <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid" class="text-red-500 text-sm">
+      <div *ngIf="form.get('email')?.errors?.['required']">Este campo es obligatorio.</div>
+      <div *ngIf="form.get('email')?.errors?.['email']">Formato de correo no válido.</div>
+    </div>
+  </div>
+</div>
+
+</div>

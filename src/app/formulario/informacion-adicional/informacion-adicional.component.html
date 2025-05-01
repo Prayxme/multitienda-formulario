@@ -1,51 +1,62 @@
-<div [formGroup]="form">
-    <label>Vendedor:</label>
-    <input formControlName="vendedor" type="text">
-  
-    <label>Estado Civil:</label>
-    <select formControlName="estadoCivil">
-      <option value="">Seleccione</option>
-      <option value="Soltero">Soltero</option>
-      <option value="Casado">Casado</option>
-      <option value="Divorciado">Divorciado</option>
-    </select>
-  
-    <label>Rol en el hogar:</label>
-    <select formControlName="rolHogar">
-      <option value="">Seleccione</option>
-      <option value="Jefe">Jefe</option>
-      <option value="Cónyuge">Cónyuge</option>
-      <option value="Hijo(a)">Hijo(a)</option>
-    </select>
-  
-    <label>Personas en el hogar:</label>
-    <input formControlName="personas" type="number" min="1">
-  
-    <label>Tipo de vivienda:</label>
-    <select formControlName="vivienda">
-      <option value="">Seleccione</option>
-      <option value="Propia">Propia</option>
-      <option value="Alquilada">Alquilada</option>
-      <option value="Prestada">Prestada</option>
-    </select>
-  
-    <label>Nivel académico:</label>
-    <select formControlName="nivel">
-      <option value="">Seleccione</option>
-      <option *ngFor="let nivel of niveles" [value]="nivel">{{ nivel }}</option>
-    </select>
-  
-    <label>Ingreso mensual estimado:</label>
-    <select formControlName="ingreso">
-      <option value="">Seleccione</option>
-      <option *ngFor="let ingreso of ingresos" [value]="ingreso">{{ ingreso }}</option>
-    </select>
-  
-    <label>¿Realiza ventas?:</label>
-    <select formControlName="ventas">
-      <option value="">Seleccione</option>
-      <option value="Sí">Sí</option>
-      <option value="No">No</option>
-    </select>
+<div [formGroup]="form" class="space-y-6">
+  <!-- ¿Eres vendedor independiente? -->
+  <div>
+    <label class="block text-sm font-medium text-gray-700">¿Eres vendedor independiente?</label>
+    <div class="mt-1 flex space-x-4">
+      <label class="inline-flex items-center">
+        <input type="radio" formControlName="vendedor" value="Sí" class="form-radio" />
+        <span class="ml-2">Sí</span>
+      </label>
+      <label class="inline-flex items-center">
+        <input type="radio" formControlName="vendedor" value="No" class="form-radio" />
+        <span class="ml-2">No</span>
+      </label>
+    </div>
+    <div *ngIf="form.get('vendedor')?.invalid && form.get('vendedor')?.touched" class="text-red-600 text-sm mt-1">
+      Este campo es requerido.
+    </div>
   </div>
-  
+
+  <!-- Estado Civil -->
+  <div>
+    <label class="block text-sm font-medium text-gray-700">Estado Civil</label>
+    <select
+      formControlName="estadoCivil"
+      class="mt-1 block w-full border rounded px-3 py-2 text-sm"
+    >
+      <option value="">Seleccione una opción</option>
+      <option value="Soltero / a">Soltero / a</option>
+      <option value="Casado / a">Casado / a</option>
+      <option value="Divorciado / a">Divorciado / a</option>
+      <option value="Viudo / a">Viudo / a</option>
+      <option value="Otro">Otro</option>
+    </select>
+    <div *ngIf="form.get('estadoCivil')?.invalid && form.get('estadoCivil')?.touched" class="text-red-600 text-sm mt-1">
+      Este campo es requerido.
+    </div>
+  </div>
+
+  <!-- Rol en el Hogar -->
+  <div>
+    <label class="block text-sm font-medium text-gray-700">Rol en el Hogar</label>
+    <input
+      type="text"
+      formControlName="rolHogar"
+      class="mt-1 block w-full border rounded px-3 py-2 text-sm"
+    />
+    <div *ngIf="form.get('rolHogar')?.invalid && form.get('rolHogar')?.touched" class="text-red-600 text-sm mt-1">
+      Este campo es requerido.
+    </div>
+  </div>
+
+  <!-- Número de Personas en el Hogar -->
+  <div>
+    <label class="block text-sm font-medium text-gray-700">Número de Personas en el Hogar</label>
+    <input
+      type="number"
+      formControlName="personas"
+      class="mt-1 block w-full border rounded px-3 py-2 text-sm"
+    />
+    <div *ngIf="form.get('personas')?.invalid && form.get('personas')?.touched" class="text-red-600 text-sm mt-1">
+
+ 

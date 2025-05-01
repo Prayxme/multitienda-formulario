@@ -1,1 +1,40 @@
-<p>extras works!</p>
+<div [formGroup]="form" class="space-y-4">
+    <!-- Recomendado por -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">¿Recomendado por?</label>
+      <input 
+        formControlName="recomendadoPor"
+        type="text"
+        class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Nombre del recomendante"
+      />
+      <div *ngIf="form.get('recomendadoPor')?.invalid && form.get('recomendadoPor')?.touched" class="text-red-500 text-sm">
+        Este campo es obligatorio.
+      </div>
+    </div>
+  
+    <!-- Plataforma -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">¿En qué plataforma lo vieron?</label>
+      <input 
+        formControlName="plataforma"
+        type="text"
+        class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Ej. Facebook, Instagram..."
+      />
+      <div *ngIf="form.get('plataforma')?.invalid && form.get('plataforma')?.touched" class="text-red-500 text-sm">
+        Este campo es obligatorio.
+      </div>
+    </div>
+  
+    <!-- Factura/Servicio -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Factura/Servicio (opcional)</label>
+      <input 
+        type="file" 
+        (change)="onFileChange($event, 'servicioFile')"
+        class="block w-full text-sm text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+      />
+    </div>
+  </div>
+  

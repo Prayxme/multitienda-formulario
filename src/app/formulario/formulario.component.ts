@@ -11,7 +11,15 @@ import { ExtrasComponent } from './extras/extras.component';
 @Component({
   selector: 'app-formulario',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, DatosPersonalesComponent, DocumentosComponent, DireccionComponent, InformacionAdicionalComponent, ExtrasComponent],
+  imports: [
+    CommonModule, 
+    ReactiveFormsModule, 
+    DatosPersonalesComponent, 
+    DocumentosComponent, 
+    DireccionComponent, 
+    InformacionAdicionalComponent, 
+    ExtrasComponent
+  ],
   templateUrl: './formulario.component.html',
   styleUrl: './formulario.component.css'
 })
@@ -31,7 +39,7 @@ export class FormularioComponent {
       segundoNombre: [''],
       primerApellido: ['', Validators.required],
       segundoApellido: [''],
-      cedula: ['', Validators.required],
+      cedula: ['', Validators.required,  Validators.pattern(/^\d+$/)],
       email: ['', [Validators.required, Validators.email]],
       cedulaFile: [null, Validators.required],
       selfieFile: [null, Validators.required],
