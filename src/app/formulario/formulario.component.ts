@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
-import { HttpClient, HttpClientJsonpModule } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { CommonModule, NgFor } from '@angular/common';
 import { DatosPersonalesComponent } from './datos-personales/datos-personales.component';
 import { DocumentosComponent } from './documentos/documentos.component';
@@ -38,11 +38,11 @@ export class FormularioComponent {
   constructor(private fb: FormBuilder, private http: HttpClient) {
 
     this.form = this.fb.group({
-      primerNombre: ['', Validators.required],
-      segundoNombre: [''],
-      primerApellido: ['', Validators.required],
-      segundoApellido: [''],
-      cedula: ['', Validators.required,  Validators.pattern(/^\d+$/)],
+      primerNombre: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(20), Validators.pattern(/^[a-zA-ZÁÉÍÓÚÑáéíóúñ\s]+$/)]],
+      segundoNombre: ['', [Validators.pattern(/^[a-zA-ZÁÉÍÓÚÑáéíóúñ\s]*$/)]],
+      primerApellido: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(20), Validators.pattern(/^[a-zA-ZÁÉÍÓÚÑáéíóúñ\s]+$/)]],
+      segundoApellido: ['', [Validators.pattern(/^[a-zA-ZÁÉÍÓÚÑáéíóúñ\s]*$/)]],
+      cedula: ['', [Validators.required, Validators.pattern(/^\d{6,8}$/)]],
       email: ['', [Validators.required, Validators.email]],
       cedulaFile: [null, Validators.required],
       selfieFile: [null, Validators.required],

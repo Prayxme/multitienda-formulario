@@ -1,80 +1,79 @@
 <div [formGroup]="form" class="space-y-4">
-  <!-- Nombres en una fila en desktop, columna en móvil -->
-<div class="flex flex-col md:flex-row gap-4 mb-4">
-  <div class="w-full md:w-1/2">
-    <label class="block text-sm font-medium text-gray-700 mb-1">Primer Nombre</label>
-    <input
-      formControlName="primerNombre"
-      type="text"
-      class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-    />
-    <div *ngIf="form.get('primerNombre')?.touched && form.get('primerNombre')?.invalid" class="text-red-500 text-sm">
-      Este campo es obligatorio.
+
+  <!-- Nombres -->
+  <div class="form-row d-flex flex-column flex-md-row gap-3">
+    <div class="form-group w-100">
+      <label>Primer Nombre</label>
+      <input type="text" formControlName="primerNombre"
+             [class.form-control]="true"
+             [class.is-invalid]="form.get('primerNombre')?.touched && form.get('primerNombre')?.invalid" />
+      <div *ngIf="form.get('primerNombre')?.touched && form.get('primerNombre')?.invalid" class="invalid-feedback d-block">
+        <div *ngIf="form.get('primerNombre')?.errors?.['required']">Este campo es obligatorio.</div>
+        <div *ngIf="form.get('primerNombre')?.errors?.['minlength']">Debe tener al menos 2 caracteres.</div>
+        <div *ngIf="form.get('primerNombre')?.errors?.['maxlength']">No puede exceder 20 caracteres.</div>
+        <div *ngIf="form.get('primerNombre')?.errors?.['pattern']">Solo se permiten letras.</div>
+      </div>
+    </div>
+  
+    <div class="form-group w-100">
+      <label>Segundo Nombre</label>
+      <input type="text" formControlName="segundoNombre"
+             [class.form-control]="true"
+             [class.is-invalid]="form.get('segundoNombre')?.touched && form.get('segundoNombre')?.invalid" />
+      <div *ngIf="form.get('segundoNombre')?.touched && form.get('segundoNombre')?.invalid" class="invalid-feedback d-block">
+        <div *ngIf="form.get('segundoNombre')?.errors?.['pattern']">Solo se permiten letras.</div>
+      </div>
     </div>
   </div>
-
-  <div class="w-full md:w-1/2">
-    <label class="block text-sm font-medium text-gray-700 mb-1">Segundo Nombre</label>
-    <input
-      formControlName="segundoNombre"
-      type="text"
-      class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-    />
-  </div>
-</div>
-
-<!-- Apellidos -->
-<div class="flex flex-col md:flex-row gap-4 mb-4">
-  <div class="w-full md:w-1/2">
-    <label class="block text-sm font-medium text-gray-700 mb-1">Primer Apellido</label>
-    <input
-      formControlName="primerApellido"
-      type="text"
-      class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-    />
-    <div *ngIf="form.get('primerApellido')?.touched && form.get('primerApellido')?.invalid" class="text-red-500 text-sm">
-      Este campo es obligatorio.
+  
+  <!-- Apellidos -->
+  <div class="form-row d-flex flex-column flex-md-row gap-3">
+    <div class="form-group w-100">
+      <label>Primer Apellido</label>
+      <input type="text" formControlName="primerApellido"
+             [class.form-control]="true"
+             [class.is-invalid]="form.get('primerApellido')?.touched && form.get('primerApellido')?.invalid" />
+      <div *ngIf="form.get('primerApellido')?.touched && form.get('primerApellido')?.invalid" class="invalid-feedback d-block">
+        <div *ngIf="form.get('primerApellido')?.errors?.['required']">Este campo es obligatorio.</div>
+        <div *ngIf="form.get('primerApellido')?.errors?.['minlength']">Debe tener al menos 2 caracteres.</div>
+        <div *ngIf="form.get('primerApellido')?.errors?.['maxlength']">No puede exceder 20 caracteres.</div>
+        <div *ngIf="form.get('primerApellido')?.errors?.['pattern']">Solo se permiten letras.</div>
+      </div>
+    </div>
+  
+    <div class="form-group w-100">
+      <label>Segundo Apellido</label>
+      <input type="text" formControlName="segundoApellido"
+             [class.form-control]="true"
+             [class.is-invalid]="form.get('segundoApellido')?.touched && form.get('segundoApellido')?.invalid" />
+      <div *ngIf="form.get('segundoApellido')?.touched && form.get('segundoApellido')?.invalid" class="invalid-feedback d-block">
+        <div *ngIf="form.get('segundoApellido')?.errors?.['pattern']">Solo se permiten letras.</div>
+      </div>
     </div>
   </div>
-
-  <div class="w-full md:w-1/2">
-    <label class="block text-sm font-medium text-gray-700 mb-1">Segundo Apellido</label>
-    <input
-      formControlName="segundoApellido"
-      type="text"
-      class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-    />
-  </div>
-</div>
-
-<!-- Cédula y Email -->
-<div class="flex flex-col md:flex-row gap-4 mb-4">
-  <div class="w-full md:w-1/2">
-    <label class="block text-sm font-medium text-gray-700 mb-1">Cédula</label>
-    <input
-      formControlName="cedula"
-      type="text"
-      placeholder="Indique su número de cédula"
-      class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-    />
-    <div *ngIf="form.get('cedula')?.touched && form.get('cedula')?.invalid" class="text-red-500 text-sm">
-      <div *ngIf="form.get('cedula')?.errors?.['required']">Este campo es obligatorio.</div>
+  
+  <!-- Cédula y Email -->
+  <div class="form-row d-flex flex-column flex-md-row gap-3">
+    <div class="form-group w-100">
+      <label>Cédula</label>
+      <input type="text" formControlName="cedula"
+             [class.form-control]="true"
+             [class.is-invalid]="form.get('cedula')?.touched && form.get('cedula')?.invalid" />
+      <div *ngIf="form.get('cedula')?.touched && form.get('cedula')?.invalid" class="invalid-feedback d-block">
+        <div *ngIf="form.get('cedula')?.errors?.['required']">Este campo es obligatorio.</div>
+        <div *ngIf="form.get('cedula')?.errors?.['pattern']">Solo se permiten números (6 a 8 dígitos).</div>
+      </div>
+    </div>
+  
+    <div class="form-group w-100">
+      <label>Email</label>
+      <input type="email" formControlName="email"
+             [class.form-control]="true"
+             [class.is-invalid]="form.get('email')?.touched && form.get('email')?.invalid" />
+      <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid" class="invalid-feedback d-block">
+        <div *ngIf="form.get('email')?.errors?.['required']">Este campo es obligatorio.</div>
+        <div *ngIf="form.get('email')?.errors?.['email']">Formato de correo no válido.</div>
+      </div>
     </div>
   </div>
-
-  <div class="w-full md:w-1/2">
-    <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-    <input
-      formControlName="email"
-      type="email"
-      placeholder="ejemplo@correo.com"
-      class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-    />
-    <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid" class="text-red-500 text-sm">
-      <div *ngIf="form.get('email')?.errors?.['required']">Este campo es obligatorio.</div>
-      <div *ngIf="form.get('email')?.errors?.['email']">Formato de correo no válido.</div>
-    </div>
-  </div>
-</div>
-
-</div>
+  
