@@ -1,22 +1,24 @@
 import { Component, Input } from '@angular/core';
-import { FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
-import { NgFor, NgIf } from '@angular/common';
+import { FormGroupDirective, ReactiveFormsModule, FormGroup } from '@angular/forms';
+import { NgFor, NgIf, CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-informacion-adicional',
-  imports: [ReactiveFormsModule, NgIf],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './informacion-adicional.component.html',
   styleUrl: './informacion-adicional.component.css',
-  viewProviders: [FormGroupDirective]
 
 })
 export class InformacionAdicionalComponent {
+  @Input() form!: FormGroup;
   @Input() niveles: string[] = [];
   @Input() ingresos: string[] = [];
+  @Input() onFileChange!: (event: any, field: string) => void;
 
-  constructor(public formGroupDirective: FormGroupDirective) {}
 
-  get form() {
-    return this.formGroupDirective.control;
-  }
+  // constructor(public formGroupDirective: FormGroupDirective) {}
+
+  // get form() {
+  //   return this.formGroupDirective.control;
+  // }
 }

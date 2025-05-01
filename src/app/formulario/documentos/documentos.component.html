@@ -9,7 +9,7 @@
      #cedulaInput
       type="file"
       accept=".jpg,.jpeg,.png,.pdf"
-      class="form-control"
+      class="block w-full text-sm text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
       (change)="onFileChange($event, 'cedulaFile')"
     />
     <div *ngIf="form.get('cedulaFile')?.errors?.['invalidType'] && form.get('cedulaFile')?.touched" class="text-danger text-sm mt-1">
@@ -45,7 +45,7 @@
       #selfieInput
       type="file"
       accept=".jpg,.jpeg,.png,.pdf"
-      class="form-control"
+      class="block w-full text-sm text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
       (change)="onFileChange($event, 'selfieFile')"
     />
     <div *ngIf="form.get('selfieFile')?.errors?.['invalidType'] && form.get('selfieFile')?.touched" class="text-danger text-sm mt-1">
@@ -72,7 +72,7 @@
       #rifInput
       type="file"
       accept=".jpg,.jpeg,.png,.pdf"
-      class="form-control"
+      class="block w-full text-sm text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
       (change)="onFileChange($event, 'rifFile')"
     />
     <div *ngIf="form.get('rifFile')?.errors?.['invalidType'] && form.get('rifFile')?.touched" class="text-danger text-sm mt-1">

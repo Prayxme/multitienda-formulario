@@ -12,7 +12,7 @@
   
     <app-direccion [estados]="estados" [codigos]="codigos" />
   
-    <app-informacion-adicional [niveles]="nivelesAcademicos" [ingresos]="ingresos" />
+    <app-informacion-adicional [niveles]="nivelesAcademicos" [ingresos]="ingresos" [onFileChange]="onFileChange.bind(this)" />
   
     <app-extras [onFileChange]="onFileChange.bind(this)" />
   

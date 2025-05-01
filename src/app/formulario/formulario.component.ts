@@ -76,23 +76,6 @@ export class FormularioComponent {
   };
   
 
-  // onFileChange(event: Event, field: string) {
-  //   const input = event.target as HTMLInputElement;
-  
-  //   if (input?.files && input.files.length > 0) {
-  //     const file = input.files[0];
-  //     const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf'];
-  
-  //     if (!validTypes.includes(file.type)) {
-  //       this.form.get(field)?.setErrors({ invalidType: true });
-  //       return;
-  //     }
-  
-  //     this.form.get(field)?.setValue(file);
-  //     this.form.get(field)?.markAsTouched();
-  //   }
-  // }
-
   removeFile(field: string) {
     this.form.get(field)?.reset();
     this.filePreviews[field] = null;
