@@ -4,6 +4,7 @@
   <h2 class="text-3xl !font-semibold text-center !text-gray-700 !m-0 pt-9">Formulario de Registro</h2>
 
   <hr class="divideTitle">
+  
   <form [formGroup]="form" (ngSubmit)="enviarFormulario()" enctype="multipart/form-data" class="px-8 !pt-4 !pb-6 ">
     <app-datos-personales [form]="form" />
   

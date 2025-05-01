@@ -1,14 +1,13 @@
 import { Component, Input } from '@angular/core';
-import { FormGroupDirective, ReactiveFormsModule } from "@angular/forms";
-import { NgFor, NgIf } from "@angular/common";
+import { FormGroupDirective, ReactiveFormsModule, FormGroup } from "@angular/forms";
+import { CommonModule } from "@angular/common";
 
 @Component({
   selector: 'app-direccion',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIf],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './direccion.component.html',
   styleUrl: './direccion.component.css',
-  viewProviders: [FormGroupDirective],
 })
 export class DireccionComponent {
   @Input() estados: string[] = []; // Cambia el tipo según tu implementación
@@ -16,7 +15,7 @@ export class DireccionComponent {
 
   constructor(public formGroupDirective: FormGroupDirective) {}
 
-  get form() {
+  get form(): FormGroup {
     return this.formGroupDirective.control;
   }
 }

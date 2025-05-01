@@ -1,56 +1,108 @@
-<hr class="divideTitle">
+<hr class="divideTitle" />
 
-<div [formGroup]="form" class="space-y-6">
-  <!-- Estado -->
-  <div>
-    <label class="block text-sm font-medium text-gray-700">Estado</label>
-    <select
-      formControlName="estado"
-      class="mt-1 block w-full border rounded px-3 py-2 text-sm"
-    >
-      <option value="">Seleccione un estado</option>
-      <option *ngFor="let estado of estados" [value]="estado">{{ estado }}</option>
+<div [formGroup]="form" class="space-y-4">
+
+
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label for="estado" class="form-label">Estado</label>
+      <select id="estado" class="form-select"
+              [class.is-invalid]="form.get('estado')?.invalid && form.get('estado')?.touched"
+              formControlName="estado">
+        <option value="">Seleccione</option>
+        <option *ngFor="let estado of estados" [value]="estado">{{ estado }}</option>
+      </select>
+      <div class="invalid-feedback">
+        El estado es obligatorio.
+      </div>
+    </div>
+  
+    <div class="col-md-6 mb-3">
+      <label for="ciudad" class="form-label">Ciudad</label>
+      <input type="text" id="ciudad" class="form-control"
+             [class.is-invalid]="form.get('ciudad')?.invalid && form.get('ciudad')?.touched"
+             formControlName="ciudad" />
+      <div class="invalid-feedback">
+        Ingrese una ciudad válida.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Sector (ancho completo) -->
+  <div class="col-12 mb-3">
+    <label for="sector" class="form-label">Sector</label>
+    <input type="text" id="sector" class="form-control"
+           [class.is-invalid]="form.get('sector')?.invalid && form.get('sector')?.touched"
+           formControlName="sector" />
+    <div class="invalid-feedback">
+      Ingrese un sector válido.
+    </div>
+  </div>
+
+  <!-- Dirección de habitación (ancho completo) -->
+  <div class="col-12 mb-3">
+    <label for="direccion" class="form-label">Dirección de habitación</label>
+    <input type="text" id="direccion" class="form-control"
+           [class.is-invalid]="form.get('direccion')?.invalid && form.get('direccion')?.touched"
+           formControlName="direccion" />
+    <div class="invalid-feedback">
+      La dirección es obligatoria.
+    </div>
+  </div>
+  
+  <!-- Código y Teléfono 1 (obligatorios) -->
+<div class="row g-3 align-items-center mb-3">
+  <div class="col-md-4">
+    <label class="form-label">Código</label>
+    <select class="form-select"
+            [class.is-invalid]="form.get('codigo1')?.invalid && form.get('codigo1')?.touched"
+            formControlName="codigo1">
+      <option value="">Seleccione</option>
+      <option *ngFor="let codigo of codigos" [value]="codigo">{{ codigo }}</option>
     </select>
-    <div *ngIf="form.get('estado')?.invalid && form.get('estado')?.touched" class="text-red-600 text-sm mt-1">
-      Este campo es requerido.
+    <div class="invalid-feedback">
+      Seleccione un código válido.
     </div>
   </div>
 
-  <!-- Ciudad -->
-  <div>
-    <label class="block text-sm font-medium text-gray-700">Ciudad</label>
-    <input
-      type="text"
-      formControlName="ciudad"
-      class="mt-1 block w-full border rounded px-3 py-2 text-sm"
-    />
-    <div *ngIf="form.get('ciudad')?.invalid && form.get('ciudad')?.touched" class="text-red-600 text-sm mt-1">
-      Este campo es requerido.
+  <div class="col-md-8">
+    <label class="form-label">Nro. de Teléfono 1</label>
+    <input type="text"
+           class="form-control"
+           formControlName="telefono1"
+           [class.is-invalid]="form.get('telefono1')?.invalid && form.get('telefono1')?.touched" />
+    <div class="invalid-feedback">
+      Ingrese un numero de teléfono válido. 
+    </div>
+  </div>
+</div>
+
+<!-- Código y Teléfono 2 (opcional) -->
+<div class="row g-3 align-items-center">
+  <div class="col-md-4">
+    <label class="form-label">Código</label>
+    <select class="form-select"
+            [class.is-invalid]="form.get('codigo2')?.invalid && form.get('codigo2')?.touched"
+            formControlName="codigo2">
+      <option value="">Seleccione</option>
+      <option *ngFor="let codigo of codigos" [value]="codigo">{{ codigo }}</option>
+    </select>
+    <div class="invalid-feedback">
+      Seleccione un código válido
     </div>
   </div>
 
-  <!-- Sector -->
-  <div>
-    <label class="block text-sm font-medium text-gray-700">Sector</label>
-    <input
-      type="text"
-      formControlName="sector"
-      class="mt-1 block w-full border rounded px-3 py-2 text-sm"
-    />
-    <div *ngIf="form.get('sector')?.invalid && form.get('sector')?.touched" class="text-red-600 text-sm mt-1">
-      Este campo es requerido.
+  <div class="col-md-8">
+    <label class="form-label">Nro. de Teléfono 2 (Opcional)</label>
+    <input type="text"
+           class="form-control"
+           formControlName="telefono2"
+           [class.is-invalid]="form.get('telefono2')?.invalid && form.get('telefono2')?.touched" />
+    <div class="invalid-feedback">
+      Ingrese un numero de teléfono válido. 
     </div>
   </div>
+</div>
 
-  <!-- Dirección -->
-  <div>
-    <label class="block text-sm font-medium text-gray-700">Dirección</label>
-    <textarea
-      formControlName="direccion"
-      class="mt-1 block w-full border rounded px-3 py-2 text-sm"
-    ></textarea>
-    <div *ngIf="form.get('direccion')?.invalid && form.get('direccion')?.touched" class="text-red-600 text-sm mt-1">
-      Este campo es requerido.
-    </div>
-  </div>
 </div>
