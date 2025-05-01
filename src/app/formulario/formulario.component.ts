@@ -97,6 +97,7 @@ export class FormularioComponent {
     this.form.get(field)?.reset();
     this.filePreviews[field] = null;
   }
+
   
   onFileChange(event: Event, field: string) {
     const input = event.target as HTMLInputElement;
@@ -104,15 +105,29 @@ export class FormularioComponent {
     if (input?.files && input.files.length > 0) {
       const file = input.files[0];
       const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf'];
+      const maxSize = 5 * 1024 * 1024; // 5 MB
   
+      const control = this.form.get(field);
+      if (!control) return;
+  
+      control.markAsTouched(); // Asegura que se muestre la validación
+  
+      // Validar tipo
       if (!validTypes.includes(file.type)) {
-        this.form.get(field)?.setErrors({ invalidType: true });
+        control.setErrors({ invalidType: true });
         this.filePreviews[field] = null;
         return;
       }
   
-      this.form.get(field)?.setValue(file);
-      this.form.get(field)?.markAsTouched();
+      // Validar tamaño
+      if (file.size > maxSize) {
+        control.setErrors({ maxSizeExceeded: true });
+        this.filePreviews[field] = null;
+        return;
+      }
+  
+      control.setValue(file);
+      control.setErrors(null); // Limpia errores anteriores
   
       // Vista previa
       if (file.type.startsWith('image/')) {
@@ -128,6 +143,8 @@ export class FormularioComponent {
       }
     }
   }
+  
+  
   
 
   enviarFormulario(){

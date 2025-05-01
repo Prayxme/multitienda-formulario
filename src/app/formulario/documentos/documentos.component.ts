@@ -17,6 +17,8 @@ export class DocumentosComponent {
   @Input() onFileChange!: (event: any, field: string) => void;
   @Input() filePreviews!: { [key: string]: string | null };
   @Input() removeFile!: (field: string) => void;
+  // @Input() fileErrors!: { [key: string]: string | null };
+
 
   @ViewChild('cedulaInput') cedulaInputRef!: ElementRef<HTMLInputElement>;
   @ViewChild('selfieInput') selfieInputRef!: ElementRef<HTMLInputElement>;

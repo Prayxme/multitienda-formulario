@@ -12,12 +12,18 @@
       class="form-control"
       (change)="onFileChange($event, 'cedulaFile')"
     />
-    <div *ngIf="form.get('cedulaFile')?.errors?.['required'] && form.get('cedulaFile')?.touched" class="text-danger mt-1">
+    <div *ngIf="form.get('cedulaFile')?.errors?.['invalidType'] && form.get('cedulaFile')?.touched" class="text-danger text-sm mt-1">
+      Formato no permitido. Solo se permiten JPG, JPEG, PNG o PDF.
+    </div>
+    
+    <div *ngIf="form.get('cedulaFile')?.errors?.['maxSizeExceeded'] && form.get('cedulaFile')?.touched" class="text-danger text-sm mt-1">
+      El archivo excede el tamaño máximo permitido (5 MB).
+    </div>
+    
+    <div *ngIf="form.get('cedulaFile')?.errors?.['required'] && form.get('cedulaFile')?.touched" class="text-danger text-sm mt-1">
       Este archivo es obligatorio.
     </div>
-    <div *ngIf="form.get('cedulaFile')?.errors?.['invalidType'] && form.get('cedulaFile')?.touched" class="text-danger mt-1">
-      Formato no válido. Solo se permiten JPG, PNG o PDF.
-    </div>
+    
     <div *ngIf="filePreviews?.['cedulaFile']">
       <img *ngIf="filePreviews['cedulaFile'] !== 'pdf'" [src]="filePreviews['cedulaFile']" alt="Vista previa Cédula" class="img-thumbnail mt-2" style="max-height: 150px;" />
       <div *ngIf="filePreviews['cedulaFile'] === 'pdf'" class="mt-2 text-green-600">Archivo PDF seleccionado</div>
@@ -42,8 +48,12 @@
       class="form-control"
       (change)="onFileChange($event, 'selfieFile')"
     />
-    <div *ngIf="form.get('selfieFile')?.errors?.['invalidType'] && form.get('selfieFile')?.touched" class="text-danger mt-1">
-      Formato no válido. Solo se permiten JPG, PNG o PDF.
+    <div *ngIf="form.get('selfieFile')?.errors?.['invalidType'] && form.get('selfieFile')?.touched" class="text-danger text-sm mt-1">
+      Formato no permitido. Solo se permiten JPG, JPEG, PNG o PDF.
+    </div>
+
+    <div *ngIf="form.get('selfieFile')?.errors?.['maxSizeExceeded'] && form.get('selfieFile')?.touched" class="text-danger text-sm mt-1">
+      El archivo excede el tamaño máximo permitido (5 MB).
     </div>
 
     <div *ngIf="filePreviews?.['selfieFile']">
@@ -65,8 +75,12 @@
       class="form-control"
       (change)="onFileChange($event, 'rifFile')"
     />
-    <div *ngIf="form.get('rifFile')?.errors?.['invalidType'] && form.get('rifFile')?.touched" class="text-danger mt-1">
-      Formato no válido. Solo se permiten JPG, PNG o PDF.
+    <div *ngIf="form.get('rifFile')?.errors?.['invalidType'] && form.get('rifFile')?.touched" class="text-danger text-sm mt-1">
+      Formato no permitido. Solo se permiten JPG, JPEG, PNG o PDF.
+    </div>
+
+    <div *ngIf="form.get('rifFile')?.errors?.['maxSizeExceeded'] && form.get('rifFile')?.touched" class="text-danger text-sm mt-1">
+      El archivo excede el tamaño máximo permitido (5 MB).
     </div>
     <div *ngIf="filePreviews?.['rifFile']">
       <img *ngIf="filePreviews['rifFile'] !== 'pdf'" [src]="filePreviews['rifFile']" alt="Vista previa RIF" class="img-thumbnail mt-2" style="max-height: 150px;" />
