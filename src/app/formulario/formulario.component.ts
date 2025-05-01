@@ -7,6 +7,8 @@ import { DocumentosComponent } from './documentos/documentos.component';
 import { DireccionComponent } from './direccion/direccion.component';
 import { InformacionAdicionalComponent } from './informacion-adicional/informacion-adicional.component';
 import { ExtrasComponent } from './extras/extras.component';
+import { HeaderComponent } from "../header/header.component";
+
 
 @Component({
   selector: 'app-formulario',
@@ -18,7 +20,8 @@ import { ExtrasComponent } from './extras/extras.component';
     DocumentosComponent, 
     DireccionComponent, 
     InformacionAdicionalComponent, 
-    ExtrasComponent
+    ExtrasComponent,
+    HeaderComponent
   ],
   templateUrl: './formulario.component.html',
   styleUrl: './formulario.component.css'
