@@ -1,40 +1,82 @@
-<div [formGroup]="form" class="space-y-6">
+<hr class="divideTitle">
+
+<div *ngIf="form" [formGroup]="form" class="space-y-6">
+
   <!-- Cédula -->
-  <div>
-    <label class="block text-sm font-medium text-gray-700">Cédula (PDF)</label>
+  <div class="form-group">
+    <label class="form-label">Cargar Cédula (Imagen o PDF) <span class="text-danger">*</span></label>
     <input
+     #cedulaInput
       type="file"
-      class="mt-1 block w-full border rounded px-3 py-2 text-sm file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
+      accept=".jpg,.jpeg,.png,.pdf"
+      class="form-control"
       (change)="onFileChange($event, 'cedulaFile')"
     />
-    <div *ngIf="form.get('cedulaFile')?.invalid && form.get('cedulaFile')?.touched" class="text-red-600 text-sm mt-1">
-      Este archivo es requerido.
+    <div *ngIf="form.get('cedulaFile')?.errors?.['required'] && form.get('cedulaFile')?.touched" class="text-danger mt-1">
+      Este archivo es obligatorio.
     </div>
+    <div *ngIf="form.get('cedulaFile')?.errors?.['invalidType'] && form.get('cedulaFile')?.touched" class="text-danger mt-1">
+      Formato no válido. Solo se permiten JPG, PNG o PDF.
+    </div>
+    <div *ngIf="filePreviews?.['cedulaFile']">
+      <img *ngIf="filePreviews['cedulaFile'] !== 'pdf'" [src]="filePreviews['cedulaFile']" alt="Vista previa Cédula" class="img-thumbnail mt-2" style="max-height: 150px;" />
+      <div *ngIf="filePreviews['cedulaFile'] === 'pdf'" class="mt-2 text-info">Archivo PDF seleccionado</div>
+      <button
+        type="button"
+        class="btn btn-outline-danger btn-sm mt-2"
+        (click)="eliminarArchivo('cedulaFile')"
+      >
+        Eliminar archivo
+      </button>
+        
+    </div>
+    <div *ngIf="filePreviews['cedulaFile'] === 'pdf'" class="text-info">Archivo PDF seleccionado</div>
   </div>
 
   <!-- Selfie -->
-  <div>
-    <label class="block text-sm font-medium text-gray-700">Selfie</label>
+  <div class="form-group">
+    <label class="form-label">Carga Selfie</label>
     <input
+      #selfieInput
       type="file"
-      class="mt-1 block w-full border rounded px-3 py-2 text-sm file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
+      accept=".jpg,.jpeg,.png,.pdf"
+      class="form-control"
       (change)="onFileChange($event, 'selfieFile')"
     />
-    <div *ngIf="form.get('selfieFile')?.invalid && form.get('selfieFile')?.touched" class="text-red-600 text-sm mt-1">
-      Este archivo es requerido.
+    <div *ngIf="form.get('selfieFile')?.errors?.['invalidType'] && form.get('selfieFile')?.touched" class="text-danger mt-1">
+      Formato no válido. Solo se permiten JPG, PNG o PDF.
+    </div>
+
+    <div *ngIf="filePreviews?.['selfieFile']">
+      <img *ngIf="filePreviews['selfieFile'] !== 'pdf'" [src]="filePreviews['selfieFile']" alt="Vista previa Selfie" class="img-thumbnail mt-2" style="max-height: 150px;" />
+      <div *ngIf="filePreviews['selfieFile'] === 'pdf'" class="mt-2 text-info">Archivo PDF seleccionado</div>
+      <button type="button" class="btn btn-outline-danger btn-sm mt-2" 
+      (click)="eliminarArchivo('selfieFile')"
+      >Eliminar archivo</button>
     </div>
   </div>
 
   <!-- RIF -->
-  <div>
-    <label class="block text-sm font-medium text-gray-700">RIF (PDF)</label>
+  <div class="form-group">
+    <label class="form-label">Cargar RIF</label>
     <input
+      #rifInput
       type="file"
-      class="mt-1 block w-full border rounded px-3 py-2 text-sm file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
+      accept=".jpg,.jpeg,.png,.pdf"
+      class="form-control"
       (change)="onFileChange($event, 'rifFile')"
     />
-    <div *ngIf="form.get('rifFile')?.invalid && form.get('rifFile')?.touched" class="text-red-600 text-sm mt-1">
-      Este archivo es requerido.
+    <div *ngIf="form.get('rifFile')?.errors?.['invalidType'] && form.get('rifFile')?.touched" class="text-danger mt-1">
+      Formato no válido. Solo se permiten JPG, PNG o PDF.
+    </div>
+    <div *ngIf="filePreviews?.['rifFile']">
+      <img *ngIf="filePreviews['rifFile'] !== 'pdf'" [src]="filePreviews['rifFile']" alt="Vista previa RIF" class="img-thumbnail mt-2" style="max-height: 150px;" />
+      <div *ngIf="filePreviews['rifFile'] === 'pdf'" class="mt-2 text-green-600">Archivo PDF seleccionado</div>
+      <button type="button" class="btn btn-outline-danger btn-sm mt-2" 
+      (click)="eliminarArchivo('rifFile')" 
+      >Eliminar archivo</button>
+
     </div>
   </div>
+
 </div>

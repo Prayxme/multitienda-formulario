@@ -3,8 +3,11 @@
   <!-- Nombres -->
   <div class="form-row d-flex flex-column flex-md-row gap-3">
     <div class="form-group w-100">
-      <label>Primer Nombre</label>
-      <input type="text" formControlName="primerNombre"
+      <div class="d-flex gap-1 items-center mb-1">
+        <label>Primer Nombre</label>
+        <span class="text-danger">*</span>
+      </div>
+      <input type="text" formControlName="primerNombre" 
              [class.form-control]="true"
              [class.is-invalid]="form.get('primerNombre')?.touched && form.get('primerNombre')?.invalid" />
       <div *ngIf="form.get('primerNombre')?.touched && form.get('primerNombre')?.invalid" class="invalid-feedback d-block">
@@ -16,7 +19,10 @@
     </div>
   
     <div class="form-group w-100">
-      <label>Segundo Nombre</label>
+      <div class="d-flex gap-1 items-center mb-1">
+        <label>Segundo Nombre</label>
+        <!-- <span class="text-danger">*</span> -->
+      </div>
       <input type="text" formControlName="segundoNombre"
              [class.form-control]="true"
              [class.is-invalid]="form.get('segundoNombre')?.touched && form.get('segundoNombre')?.invalid" />
@@ -29,8 +35,10 @@
   <!-- Apellidos -->
   <div class="form-row d-flex flex-column flex-md-row gap-3">
     <div class="form-group w-100">
-      <label>Primer Apellido</label>
-      <input type="text" formControlName="primerApellido"
+      <div class="d-flex gap-1 items-center mb-1">
+        <label>Primer Apellido</label>
+        <span class="text-danger">*</span>
+      </div>      <input type="text" formControlName="primerApellido"
              [class.form-control]="true"
              [class.is-invalid]="form.get('primerApellido')?.touched && form.get('primerApellido')?.invalid" />
       <div *ngIf="form.get('primerApellido')?.touched && form.get('primerApellido')?.invalid" class="invalid-feedback d-block">
@@ -42,8 +50,10 @@
     </div>
   
     <div class="form-group w-100">
-      <label>Segundo Apellido</label>
-      <input type="text" formControlName="segundoApellido"
+      <div class="d-flex gap-1 items-center mb-1">
+        <label>Segundo Apellido</label>
+        <!-- <span class="text-danger">*</span> -->
+      </div>      <input type="text" formControlName="segundoApellido"
              [class.form-control]="true"
              [class.is-invalid]="form.get('segundoApellido')?.touched && form.get('segundoApellido')?.invalid" />
       <div *ngIf="form.get('segundoApellido')?.touched && form.get('segundoApellido')?.invalid" class="invalid-feedback d-block">
@@ -55,7 +65,10 @@
   <!-- Cédula y Email -->
   <div class="form-row d-flex flex-column flex-md-row gap-3">
     <div class="form-group w-100">
-      <label>Cédula</label>
+      <div class="d-flex gap-1 items-center mb-1">
+        <label>Cédula</label>
+        <span class="text-danger">*</span>
+      </div>
       <input type="text" formControlName="cedula"
              [class.form-control]="true"
              [class.is-invalid]="form.get('cedula')?.touched && form.get('cedula')?.invalid" />
@@ -66,7 +79,10 @@
     </div>
   
     <div class="form-group w-100">
-      <label>Email</label>
+      <div class="d-flex gap-1 items-center mb-1">
+        <label>Correo Electronico</label>
+        <span class="text-danger">*</span>
+      </div>
       <input type="email" formControlName="email"
              [class.form-control]="true"
              [class.is-invalid]="form.get('email')?.touched && form.get('email')?.invalid" />

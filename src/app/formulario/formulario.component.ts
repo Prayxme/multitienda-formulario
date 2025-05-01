@@ -45,8 +45,8 @@ export class FormularioComponent {
       cedula: ['', [Validators.required, Validators.pattern(/^\d{6,8}$/)]],
       email: ['', [Validators.required, Validators.email]],
       cedulaFile: [null, Validators.required],
-      selfieFile: [null, Validators.required],
-      rifFile: [null, Validators.required],
+      selfieFile: [null],
+      rifFile: [null],
       estado: ['', Validators.required],
       ciudad: ['', Validators.required],
       sector: ['', Validators.required],
@@ -69,12 +69,66 @@ export class FormularioComponent {
     });
   }
 
-  onFileChange(event: any, field: string) {
-    const file = event.target.files[0];
-    if (file) {
+  filePreviews: { [key: string]: string | null } = {
+    cedulaFile: null,
+    selfieFile: null,
+    rifFile: null
+  };
+  
+
+  // onFileChange(event: Event, field: string) {
+  //   const input = event.target as HTMLInputElement;
+  
+  //   if (input?.files && input.files.length > 0) {
+  //     const file = input.files[0];
+  //     const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf'];
+  
+  //     if (!validTypes.includes(file.type)) {
+  //       this.form.get(field)?.setErrors({ invalidType: true });
+  //       return;
+  //     }
+  
+  //     this.form.get(field)?.setValue(file);
+  //     this.form.get(field)?.markAsTouched();
+  //   }
+  // }
+
+  removeFile(field: string) {
+    this.form.get(field)?.reset();
+    this.filePreviews[field] = null;
+  }
+  
+  onFileChange(event: Event, field: string) {
+    const input = event.target as HTMLInputElement;
+  
+    if (input?.files && input.files.length > 0) {
+      const file = input.files[0];
+      const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf'];
+  
+      if (!validTypes.includes(file.type)) {
+        this.form.get(field)?.setErrors({ invalidType: true });
+        this.filePreviews[field] = null;
+        return;
+      }
+  
       this.form.get(field)?.setValue(file);
+      this.form.get(field)?.markAsTouched();
+  
+      // Vista previa
+      if (file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.filePreviews[field] = reader.result as string;
+        };
+        reader.readAsDataURL(file);
+      } else if (file.type === 'application/pdf') {
+        this.filePreviews[field] = 'pdf';
+      } else {
+        this.filePreviews[field] = null;
+      }
     }
   }
+  
 
   enviarFormulario(){
     if(this.form.invalid) return;
