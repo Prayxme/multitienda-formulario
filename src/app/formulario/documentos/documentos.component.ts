@@ -25,7 +25,7 @@ export class DocumentosComponent {
   reloadFile(field: string) {
     this.form.get(field)?.setValue(null);
     this.filePreviews[field] = null;
-    console.log('Limpiar el input file', field);
+    // console.log('Limpiar el input file', field);
     // Limpiar el input file
     switch (field) {
       case 'cedulaFile':

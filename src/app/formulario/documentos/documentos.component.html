@@ -20,7 +20,7 @@
     </div>
     <div *ngIf="filePreviews?.['cedulaFile']">
       <img *ngIf="filePreviews['cedulaFile'] !== 'pdf'" [src]="filePreviews['cedulaFile']" alt="Vista previa Cédula" class="img-thumbnail mt-2" style="max-height: 150px;" />
-      <div *ngIf="filePreviews['cedulaFile'] === 'pdf'" class="mt-2 text-info">Archivo PDF seleccionado</div>
+      <div *ngIf="filePreviews['cedulaFile'] === 'pdf'" class="mt-2 text-green-600">Archivo PDF seleccionado</div>
       <button
         type="button"
         class="btn btn-outline-danger btn-sm mt-2"
@@ -30,7 +30,6 @@
       </button>
         
     </div>
-    <div *ngIf="filePreviews['cedulaFile'] === 'pdf'" class="text-info">Archivo PDF seleccionado</div>
   </div>
 
   <!-- Selfie -->
@@ -49,7 +48,7 @@
 
     <div *ngIf="filePreviews?.['selfieFile']">
       <img *ngIf="filePreviews['selfieFile'] !== 'pdf'" [src]="filePreviews['selfieFile']" alt="Vista previa Selfie" class="img-thumbnail mt-2" style="max-height: 150px;" />
-      <div *ngIf="filePreviews['selfieFile'] === 'pdf'" class="mt-2 text-info">Archivo PDF seleccionado</div>
+      <div *ngIf="filePreviews['selfieFile'] === 'pdf'" class="mt-2 text-green-600">Archivo PDF seleccionado</div>
       <button type="button" class="btn btn-outline-danger btn-sm mt-2" 
       (click)="eliminarArchivo('selfieFile')"
       >Eliminar archivo</button>
