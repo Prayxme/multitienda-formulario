@@ -74,7 +74,7 @@ export class FormularioComponent {
       nivel: ['', Validators.required],
       ingreso: ['', Validators.required],
       ventas: ['', Validators.required],
-      coleccionesInteresado: [[], Validators.required],
+      // coleccionesInteresado: [[], Validators.required],
       recomendadoPor: [''],
       plataforma: ['', Validators.required],
     });
@@ -88,20 +88,20 @@ export class FormularioComponent {
 
   };
   
-  toggleColeccion(nombre: string) {
-    const control = this.form.get('coleccionesInteresado');
-    if (!control) return;
+  // toggleColeccion(nombre: string) {
+  //   const control = this.form.get('coleccionesInteresado');
+  //   if (!control) return;
   
-    const coleccionesSeleccionadas = control.value as string[];
+  //   const coleccionesSeleccionadas = control.value as string[];
   
-    if (coleccionesSeleccionadas.includes(nombre)) {
-      control.setValue(coleccionesSeleccionadas.filter(c => c !== nombre));
-    } else {
-      control.setValue([...coleccionesSeleccionadas, nombre]);
-    }
+  //   if (coleccionesSeleccionadas.includes(nombre)) {
+  //     control.setValue(coleccionesSeleccionadas.filter(c => c !== nombre));
+  //   } else {
+  //     control.setValue([...coleccionesSeleccionadas, nombre]);
+  //   }
   
-    control.markAsTouched();
-  }
+  //   control.markAsTouched();
+  // }
   
 
   removeFile(field: string) {
@@ -156,16 +156,70 @@ export class FormularioComponent {
   }
   
   
+  // enviarFormulario() {
+  //   if (this.form.invalid) {
+  //     this.form.markAllAsTouched();
+  //     const camposInvalidos = Object.keys(this.form.controls).filter(campo => this.form.get(campo)?.invalid);
+  
+  //     console.warn('❌ Formulario inválido. Campos con errores:');
+  //     camposInvalidos.forEach(campo => {
+  //       const control = this.form.get(campo);
+  //       console.warn(`- ${campo}:`, control?.errors);
+  //     });
+  
+  //     return;
+  //   }
+  
+  //   // Preparar datos para consola
+  //   const visualData: Record<string, any> = {};
+  //   Object.entries(this.form.value).forEach(([key, value]) => {
+  //     if (value instanceof File) {
+  //       visualData[key] = value.name;
+  //     } else {
+  //       visualData[key] = value;
+  //     }
+  //   });
+  
+  //   console.log('📝 Datos captados del formulario (resumen):', visualData);
+  
+  //   const formData = new FormData();
+  //   Object.entries(this.form.value).forEach(([key, value]) => {
+  //     if (value instanceof File) {
+  //       formData.append(key, value, value.name);
+  //     } else {
+  //       formData.append(key, typeof value === 'object' && !(value instanceof File) ? JSON.stringify(value) : value?.toString() || '');
+  //     }
+  //   });
+  
+  //   // Aquí iría el envío real si estuviera activo
+  // }
+  
+      
   enviarFormulario() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
-      console.warn('Formulario inválido');
+      const camposInvalidos = Object.keys(this.form.controls).filter(campo => this.form.get(campo)?.invalid);
+  
+      console.warn('❌ Formulario inválido. Campos con errores:');
+      camposInvalidos.forEach(campo => {
+        const control = this.form.get(campo);
+        console.warn(`- ${campo}:`, control?.errors);
+      });
+  
       return;
     }
   
-    // Imprimir todos los datos en consola (visualización)
-    const rawData = { ...this.form.value };
-    console.log('📝 Datos captados del formulario:', rawData);
+    // Preparar datos para consola
+    const visualData: Record<string, any> = {};
+    Object.entries(this.form.value).forEach(([key, value]) => {
+      if (value instanceof File) {
+        visualData[key] = value.name;
+      } else {
+        visualData[key] = value;
+      }
+    });
+  
+    console.log('📝 Datos captados del formulario (resumen):', visualData);
   
     const formData = new FormData();
     Object.entries(this.form.value).forEach(([key, value]) => {
@@ -176,15 +230,8 @@ export class FormularioComponent {
       }
     });
   
-    // Aquí iría la petición HTTP (cuando decidas activarla)
-    /*
-    const url_script = 'http://localhost:3000/api/formulario';
-    this.http.post(url_script, formData).subscribe({
-      next: () => alert('Formulario enviado con éxito'),
-      error: () => alert('Error al enviar el formulario')
-    });
-    */
+    // Aquí iría el envío real si estuviera activo
   }
-    
+  
 
 }

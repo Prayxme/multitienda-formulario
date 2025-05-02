@@ -16,13 +16,17 @@ export class InformacionAdicionalComponent {
   @Input() onFileChange!: (event: any, field: string) => void;
   @Input() filePreviews!: { [key: string]: string | null };
   @Input() colecciones: string[] = [];
-  @Input() toggleColeccion!: (nombre: string) => void;
+  // @Input() toggleColeccion!: (nombre: string) => void;
 
 
 
   handleServicioFile(event: Event) {
+    const fileInput = event.target as HTMLInputElement;
+  if (fileInput?.files?.[0]) {
+    // Aquí puedes procesar el archivo
     this.form.get('servicioFile')?.markAsTouched();
     this.onFileChange(event, 'servicioFile');
+  }
   }
   
 

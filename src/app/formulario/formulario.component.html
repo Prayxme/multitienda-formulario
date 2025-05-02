@@ -13,10 +13,15 @@
     <app-direccion [estados]="estados" [codigos]="codigos" />
   
     <app-informacion-adicional [niveles]="nivelesAcademicos"  [form]="form"  [ingresos]="ingresos" [onFileChange]="onFileChange.bind(this)" [colecciones]="colecciones"
-    [toggleColeccion]="toggleColeccion.bind(this)" />
+    />
+
+    <!-- <app-informacion-adicional [niveles]="nivelesAcademicos"  [form]="form"  [ingresos]="ingresos" [onFileChange]="onFileChange.bind(this)" [colecciones]="colecciones"
+    [toggleColeccion]="toggleColeccion.bind(this)" /> -->
   
     <app-extras [form]="form" />
-  
+
+    <span class="text-sm text-red-500 block mx-auto px-8"> * Campos Obligatorios</span>
+
     <button 
     type="submit"
     class="block mx-auto !my-7  bg-amber-600 hover:bg-amber-500 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition duration-200"
