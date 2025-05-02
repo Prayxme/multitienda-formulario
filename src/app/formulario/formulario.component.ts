@@ -31,6 +31,16 @@ export class FormularioComponent {
   codigos = ['0412', '0414', '0416', '0424', '0426']; 
   nivelesAcademicos = ['Primaria', 'Secundaria sin terminar', 'Bachiller', 'Universitario'];
   ingresos = ['0$ - 50$', '50$ - 100$', '100$ - 200$', 'Más de 200$'];
+  colecciones = [
+    'Colección 1',
+    'Colección 2',
+    'Colección 3',
+    'Colección 4',
+    'Colección 5',
+    'Colección 6',
+    'Colección 7'
+  ];
+  
 
 
   form: FormGroup;
@@ -64,6 +74,7 @@ export class FormularioComponent {
       nivel: ['', Validators.required],
       ingreso: ['', Validators.required],
       ventas: ['', Validators.required],
+      coleccionesInteresado: [[], Validators.required],
       recomendadoPor: [''],
       plataforma: ['', Validators.required],
     });
@@ -76,6 +87,21 @@ export class FormularioComponent {
     servicioFile: null 
 
   };
+  
+  toggleColeccion(nombre: string) {
+    const control = this.form.get('coleccionesInteresado');
+    if (!control) return;
+  
+    const coleccionesSeleccionadas = control.value as string[];
+  
+    if (coleccionesSeleccionadas.includes(nombre)) {
+      control.setValue(coleccionesSeleccionadas.filter(c => c !== nombre));
+    } else {
+      control.setValue([...coleccionesSeleccionadas, nombre]);
+    }
+  
+    control.markAsTouched();
+  }
   
 
   removeFile(field: string) {

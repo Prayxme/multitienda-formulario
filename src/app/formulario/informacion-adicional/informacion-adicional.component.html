@@ -1,7 +1,7 @@
 <hr class="divideTitle" />
 
-<div [formGroup]="form" class="space-y-6">
-  <div class="mt-6">
+<div [formGroup]="form" class="space-y-6 px-8">
+  <div class="mt-6 mb-10">
     <!-- Archivo opcional -->
     <label class="form-label block">Cargar imagen de un servicio a nombre propio</label>
     <input
@@ -43,87 +43,136 @@
   
   
   <!-- Radios obligatorios -->
-  <div class="mt-6">
-    <label class="form-label block ">¿Consideras que ser vendedor te da independencia económica y tiempo libre?</label>
-    <div class="flex gap-6">
-      <label><input type="radio" value="Si" formControlName="vendedor" /> Si</label>
-      <label><input type="radio" value="No" formControlName="vendedor" /> No</label>
+  <div class="mt-6 mb-10">
+    <div class="d-flex gap-1">
+      <label class="form-label block ">¿Consideras que ser vendedor te da independencia económica y tiempo libre?</label>
+      <span class="text-red-500">*</span>
+    </div>
+    <div class="flex flex-col gap-2">
+      <label class="radioLabel"><input type="radio" value="Si" formControlName="vendedor" /> Si</label>
+      <label class="radioLabel"><input type="radio" value="No" formControlName="vendedor" /> No</label>
     </div>
     <div *ngIf="form.get('vendedor')?.touched && form.get('vendedor')?.invalid" class="text-danger">Campo requerido.</div>
   </div>
   
-  <div class="mt-6">
-    <label class="form-label block font-semibold">¿Cuál es tu estado civil actual?</label>
+  <div class="mt-6 mb-10">
+    <div class="d-flex gap-1">
+      <label class="form-label block font-semibold">¿Cuál es tu estado civil actual?</label>
+      <span class="text-red-500">*</span>
+    </div>
     <div class="grid grid-cols-2 gap-2">
-      <label><input type="radio" value="Soltero/a" formControlName="estadoCivil" /> Soltero/a</label>
-      <label><input type="radio" value="Concubinato" formControlName="estadoCivil" /> Concubinato</label>
-      <label><input type="radio" value="Casado/a" formControlName="estadoCivil" /> Casado/a</label>
-      <label><input type="radio" value="Divorciado/a" formControlName="estadoCivil" /> Divorciado/a</label>
-      <label><input type="radio" value="Viudo/a" formControlName="estadoCivil" /> Viudo/a</label>
-      <label><input type="radio" value="Otro" formControlName="estadoCivil" /> Otro</label>
+      <label class="radioLabel"><input type="radio" value="Soltero/a" formControlName="estadoCivil" /> Soltero/a</label>
+      <label class="radioLabel"><input type="radio" value="Concubinato" formControlName="estadoCivil" /> Concubinato</label>
+      <label class="radioLabel"><input type="radio" value="Casado/a" formControlName="estadoCivil" /> Casado/a</label>
+      <label class="radioLabel"><input type="radio" value="Divorciado/a" formControlName="estadoCivil" /> Divorciado/a</label>
+      <label class="radioLabel"><input type="radio" value="Viudo/a" formControlName="estadoCivil" /> Viudo/a</label>
+      <label class="radioLabel"><input type="radio" value="Otro" formControlName="estadoCivil" /> Otro</label>
     </div>
     <div *ngIf="form.get('estadoCivil')?.touched && form.get('estadoCivil')?.invalid" class="text-danger">Campo requerido.</div>
   </div>
   
-  <div class="mt-6">
-    <label class="form-label block font-semibold">¿Qué rol cumples en tu hogar?</label>
-    <div class="flex flex-wrap gap-4">
-      <label><input type="radio" value="Cabeza de familia" formControlName="rolHogar" /> Cabeza de familia</label>
-      <label><input type="radio" value="Sin carga familiar" formControlName="rolHogar" /> Sin carga familiar</label>
-      <label><input type="radio" value="Responsabilidad compartida" formControlName="rolHogar" /> Responsabilidad compartida</label>
+  <div class="mt-6 mb-10">
+    <div class="d-flex gap-1">
+      <label class="form-label block font-semibold">¿Qué rol cumples en tu hogar?</label>
+      <span class="text-red-500">*</span>
+    </div>
+    <div class="flex flex-col gap-2">
+      <label class="radioLabel"><input type="radio" value="Cabeza de familia" formControlName="rolHogar" /> Cabeza de familia</label>
+      <label class="radioLabel"><input type="radio" value="Sin carga familiar" formControlName="rolHogar" /> Sin carga familiar</label>
+      <label class="radioLabel"><input type="radio" value="Responsabilidad compartida" formControlName="rolHogar" /> Responsabilidad compartida</label>
     </div>
     <div *ngIf="form.get('rolHogar')?.touched && form.get('rolHogar')?.invalid" class="text-danger">Campo requerido.</div>
   </div>
   
-  <div class="mt-6">
-    <label class="form-label block font-semibold">¿Cuántas personas viven contigo?</label>
+  <div class="mt-6 mb-10">
+    <div class="d-flex">
+      <label class="form-label block font-semibold">¿Cuántas personas viven contigo?</label>
+      <span class="text-red-500">*</span>
+
+    </div>
     <div class="grid grid-cols-5 gap-2">
       <ng-container *ngFor="let num of [1,2,3,4,5,6,7,8,9,10]">
-        <label><input type="radio" [value]="num" formControlName="personas" /> {{num}}</label>
+        <label class="radioLabel"><input type="radio" [value]="num" formControlName="personas" /> {{num}}</label>
       </ng-container>
     </div>
     <div *ngIf="form.get('personas')?.touched && form.get('personas')?.invalid" class="text-danger">Campo requerido.</div>
   </div>
   
-  <div class="mt-6">
-    <label class="form-label block font-semibold">Con relación al lugar donde vives es:</label>
-    <div class="flex flex-wrap gap-4">
-      <label><input type="radio" value="Alquilada" formControlName="vivienda" /> Alquilada</label>
-      <label><input type="radio" value="Prestada" formControlName="vivienda" /> Prestada</label>
-      <label><input type="radio" value="De mi propiedad" formControlName="vivienda" /> De mi propiedad</label>
+  <div class="mt-6 mb-10">
+    <div class="d-flex gap-1">
+      <label class="form-label block font-semibold">Con relación al lugar donde vives es:</label>
+      <span class="text-red-500">*</span>
+    </div>
+    <div class="flex flex-col gap-2">
+      <label class="radioLabel"><input type="radio" value="Alquilada" formControlName="vivienda" /> Alquilada</label>
+      <label class="radioLabel"><input type="radio" value="Prestada" formControlName="vivienda" /> Prestada</label>
+      <label class="radioLabel"><input type="radio" value="De mi propiedad" formControlName="vivienda" /> De mi propiedad</label>
     </div>
     <div *ngIf="form.get('vivienda')?.touched && form.get('vivienda')?.invalid" class="text-danger">Campo requerido.</div>
   </div>
   
-  <div class="mt-6">
-    <label class="form-label block font-semibold">¿Cuál es tu nivel académico?</label>
+  <div class="mt-6 mb-10">
+    <div class="d-flex gap-1">
+      <label class="form-label block font-semibold">¿Cuál es tu nivel académico?</label>
+      <span class="text-red-500">*</span>
+    </div>
     <div class="grid grid-cols-2 gap-2">
-      <label *ngFor="let nivel of niveles">
+      <label *ngFor="let nivel of niveles" class="radioLabel">
         <input type="radio" [value]="nivel" formControlName="nivel" /> {{nivel}}
       </label>
     </div>
     <div *ngIf="form.get('nivel')?.touched && form.get('nivel')?.invalid" class="text-danger">Campo requerido.</div>
   </div>
   
-  <div class="mt-6">
-    <label class="form-label block font-semibold">¿Cuál es tu ingreso mensual promedio actualmente?</label>
+  <div class="mt-6 mb-10">
+    <div class="d-flex gap-1">
+      <label class="form-label block font-semibold">¿Cuál es tu ingreso mensual promedio actualmente?</label>
+      <span class="text-red-500">*</span>
+    </div>
     <div class="grid grid-cols-2 gap-2">
-      <label *ngFor="let ingreso of ingresos">
-        <input type="radio" [value]="ingreso" formControlName="ingreso" /> {{ingreso}}
+      <label *ngFor="let ingreso of ingresos" class="radioLabel">
+        <input type="radio" [value]="ingreso" formControlName="ingreso"/> {{ingreso}}
       </label>
     </div>
     <div *ngIf="form.get('ingreso')?.touched && form.get('ingreso')?.invalid" class="text-danger">Campo requerido.</div>
   </div>
   
-  <div class="mt-6">
-    <label class="form-label block ">¿Tienes algún conocimiento en ventas?</label>
-    <div class="flex gap-6">
-      <label><input type="radio" value="Poco" formControlName="ventas" /> Poco</label>
-      <label><input type="radio" value="Regular" formControlName="ventas" /> Regular</label>
-      <label><input type="radio" value="Mucho" formControlName="ventas" /> Mucho</label>
+  <div class="mt-6 mb-10">
+    <div class="d-flex gap-1">
+      <label class="form-label block ">¿Tienes algún conocimiento en ventas?</label>
+      <span class="text-red-500">*</span>
+    </div>
+    <div class="flex flex-col gap-2">
+      <label class="radioLabel"><input type="radio" value="Poco" formControlName="ventas" /> Poco</label>
+      <label class="radioLabel"><input type="radio" value="Regular" formControlName="ventas" /> Regular</label>
+      <label class="radioLabel"><input type="radio" value="Mucho" formControlName="ventas" /> Mucho</label>
     </div>
     <div *ngIf="form.get('ventas')?.touched && form.get('ventas')?.invalid" class="text-danger">Campo requerido.</div>
   </div>
+
+  <div class="mb-4">
+    <div class="d-flex gap-1">
+      <label class="font-semibold block mb-2">¿En cuáles de nuestras colecciones estás interesado?</label>
+      <span class="text-red-500">*</span>
+
+    </div>
+    
+    <div *ngFor="let coleccion of colecciones" class="flex gap-1 items-center mb-1">
+      <input 
+        type="checkbox"
+        [checked]="form.get('coleccionesInteresado')?.value?.includes(coleccion)"
+        (change)="toggleColeccion(coleccion)"
+        class="mr-2"
+      />
+      <label class="radioLabel">{{ coleccion }}</label>
+    </div>
+  
+    <div *ngIf="form.get('coleccionesInteresado')?.touched && form.get('coleccionesInteresado')?.invalid" class="text-red-600 text-sm mt-1">
+      Debes seleccionar al menos una colección.
+    </div>
+  </div>
+  
+  
   
 </div>
  

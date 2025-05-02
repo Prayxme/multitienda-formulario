@@ -1,7 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 body{
     background-color: #F3F3FE;
-    font-family: poppins, sans-serif;
+    font-family: "Inter", sans-serif;
+}
+
+div > label{
+    font-weight: 500;
+}
+
+.radioLabel{
+    font-weight: 400;
 }
 
 @import "tailwindcss";

@@ -5,18 +5,19 @@
 
   <hr class="divideTitle">
   
-  <form [formGroup]="form" (ngSubmit)="enviarFormulario()" enctype="multipart/form-data" class="px-8 !pt-4 !pb-6 ">
+  <form [formGroup]="form" (ngSubmit)="enviarFormulario()" enctype="multipart/form-data" class="!pt-4 !pb-6 ">
     <app-datos-personales [form]="form" />
   
     <app-documentos [form]="form" [onFileChange]="onFileChange.bind(this)" [filePreviews]="filePreviews" [removeFile]="removeFile.bind(this)"/>
   
     <app-direccion [estados]="estados" [codigos]="codigos" />
   
-    <app-informacion-adicional [niveles]="nivelesAcademicos"  [form]="form"  [ingresos]="ingresos" [onFileChange]="onFileChange.bind(this)" />
+    <app-informacion-adicional [niveles]="nivelesAcademicos"  [form]="form"  [ingresos]="ingresos" [onFileChange]="onFileChange.bind(this)" [colecciones]="colecciones"
+    [toggleColeccion]="toggleColeccion.bind(this)" />
   
     <app-extras [onFileChange]="onFileChange.bind(this)" />
   
-    <button type="submit">Enviar</button>
+    <button type="submit" class="border-amber-500 border-2 px-4 py-2 rounded-b-2xl m-auto">Enviar</button>
   </form>
   
 </div>

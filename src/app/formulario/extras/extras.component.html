@@ -1,4 +1,6 @@
-<div [formGroup]="form" class="space-y-4">
+<hr class="divideTitle" />
+
+<div [formGroup]="form" class="my-5 space-y-4 px-8">
     <!-- Recomendado por -->
     <div>
       <label class="block text-sm font-medium text-gray-700 mb-1">¿Recomendado por?</label>
@@ -27,14 +29,6 @@
       </div>
     </div>
   
-    <!-- Factura/Servicio -->
-    <div>
-      <label class="block text-sm font-medium text-gray-700 mb-1">Factura/Servicio (opcional)</label>
-      <input 
-        type="file" 
-        (change)="onFileChange($event, 'servicioFile')"
-        class="block w-full text-sm text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-      />
-    </div>
+   
   </div>
   

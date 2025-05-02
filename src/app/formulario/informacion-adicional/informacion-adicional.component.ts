@@ -15,6 +15,9 @@ export class InformacionAdicionalComponent {
   @Input() ingresos: string[] = [];
   @Input() onFileChange!: (event: any, field: string) => void;
   @Input() filePreviews!: { [key: string]: string | null };
+  @Input() colecciones: string[] = [];
+  @Input() toggleColeccion!: (nombre: string) => void;
+
 
 
   handleServicioFile(event: Event) {
