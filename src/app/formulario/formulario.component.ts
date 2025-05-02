@@ -72,7 +72,9 @@ export class FormularioComponent {
   filePreviews: { [key: string]: string | null } = {
     cedulaFile: null,
     selfieFile: null,
-    rifFile: null
+    rifFile: null,
+    servicioFile: null 
+
   };
   
 

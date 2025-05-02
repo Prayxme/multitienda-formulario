@@ -3,19 +3,44 @@
 <div [formGroup]="form" class="space-y-6">
   <div class="mt-6">
     <!-- Archivo opcional -->
-    <label class="form-label block ">Cargar imagen de un servicio a nombre propio </label>
+    <label class="form-label block">Cargar imagen de un servicio a nombre propio</label>
     <input
       type="file"
-      accept="image/*,application/pdf"
+      accept=".jpg,.jpeg,.png,.pdf"
       class="block w-full text-sm text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-     
-      (change)="form.get('servicioFile')?.markAsTouched()"
-      (change)="onFileChange($event, 'servicioFile')"
+      (change)="handleServicioFile($event)"
       formControlName="servicioFile"
     />
-    <div *ngIf="form.get('servicioFile')?.errors?.['invalidType']" class="text-danger">Tipo de archivo no permitido.</div>
-    <div *ngIf="form.get('servicioFile')?.errors?.['maxSizeExceeded']" class="text-danger">Tamaño máximo excedido (5MB).</div>
+  
+    <!-- Mensajes de error -->
+    <div *ngIf="form.get('servicioFile')?.errors?.['invalidType'] && form.get('servicioFile')?.touched" class="text-danger text-sm mt-1">
+      Formato no permitido. Solo se permiten JPG, JPEG, PNG o PDF.
+    </div>
+  
+    <div *ngIf="form.get('servicioFile')?.errors?.['maxSizeExceeded'] && form.get('servicioFile')?.touched" class="text-danger text-sm mt-1">
+      El archivo excede el tamaño máximo permitido (5 MB).
+    </div>
+  
+    <!-- Vista previa o mensaje PDF -->
+    <div *ngIf="form.get('servicioFile')?.value">
+      <img
+        *ngIf="filePreviews?.['servicioFile'] && filePreviews['servicioFile'] !== 'pdf'"
+        [src]="filePreviews['servicioFile']"
+        alt="Vista previa del servicio"
+        class="mt-2 max-w-xs border rounded"
+      />
+      <div *ngIf="filePreviews['servicioFile'] === 'pdf'" class="mt-2 text-green-600">
+        Archivo PDF seleccionado
+      </div>
+  
+      <!-- Botón eliminar -->
+      <!-- <button type="button" class="btn btn-outline-danger btn-sm mt-2"
+        (click)="eliminarArchivo('servicioFile')">
+        Eliminar archivo
+      </button> -->
+    </div>
   </div>
+  
   
   <!-- Radios obligatorios -->
   <div class="mt-6">

@@ -14,11 +14,13 @@ export class InformacionAdicionalComponent {
   @Input() niveles: string[] = [];
   @Input() ingresos: string[] = [];
   @Input() onFileChange!: (event: any, field: string) => void;
+  @Input() filePreviews!: { [key: string]: string | null };
 
 
-  // constructor(public formGroupDirective: FormGroupDirective) {}
+  handleServicioFile(event: Event) {
+    this.form.get('servicioFile')?.markAsTouched();
+    this.onFileChange(event, 'servicioFile');
+  }
+  
 
-  // get form() {
-  //   return this.formGroupDirective.control;
-  // }
 }
