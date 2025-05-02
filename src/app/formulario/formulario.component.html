@@ -15,9 +15,14 @@
     <app-informacion-adicional [niveles]="nivelesAcademicos"  [form]="form"  [ingresos]="ingresos" [onFileChange]="onFileChange.bind(this)" [colecciones]="colecciones"
     [toggleColeccion]="toggleColeccion.bind(this)" />
   
-    <app-extras [onFileChange]="onFileChange.bind(this)" />
+    <app-extras [form]="form" />
   
-    <button type="submit" class="border-amber-500 border-2 px-4 py-2 rounded-b-2xl m-auto">Enviar</button>
-  </form>
+    <button 
+    type="submit"
+    class="block mx-auto !my-7  bg-amber-600 hover:bg-amber-500 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition duration-200"
+  >
+    Enviar Formulario
+    </button>
+    </form>
   
 </div>

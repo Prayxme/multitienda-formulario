@@ -1,23 +1,26 @@
-import { NgIf } from '@angular/common';
+import { NgIf, CommonModule } from '@angular/common';
 import { Component, Input  } from '@angular/core';
-import { FormGroupDirective, ReactiveFormsModule } from "@angular/forms";
+import { FormGroup, ReactiveFormsModule } from "@angular/forms";
 
 
 @Component({
   selector: 'app-extras',
-  imports: [ReactiveFormsModule, NgIf],
+  imports: [ReactiveFormsModule, NgIf, CommonModule],
   templateUrl: './extras.component.html',
   styleUrl: './extras.component.css',
-  viewProviders: [FormGroupDirective]
 
 })
 export class ExtrasComponent {
-  @Input() onFileChange!: (event: any, field: string) => void;
+  @Input() form!: FormGroup;
 
-  constructor(public formGroupDirective: FormGroupDirective) {}
-
-  get form() {
-    return this.formGroupDirective.control;
-  }
-
+  plataformas: string[] = [
+    'Web',
+    'Instagram',
+    'Facebook',
+    'YouTube',
+    'TikTok',
+    'Publicidad móvil',
+    'Radio',
+    'Televisión'
+  ];
 }

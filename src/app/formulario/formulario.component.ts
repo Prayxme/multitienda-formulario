@@ -156,26 +156,35 @@ export class FormularioComponent {
   }
   
   
+  enviarFormulario() {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      console.warn('Formulario inválido');
+      return;
+    }
   
-
-  enviarFormulario(){
-    if(this.form.invalid) return;
-
+    // Imprimir todos los datos en consola (visualización)
+    const rawData = { ...this.form.value };
+    console.log('📝 Datos captados del formulario:', rawData);
+  
     const formData = new FormData();
     Object.entries(this.form.value).forEach(([key, value]) => {
-      if(value instanceof File) {
+      if (value instanceof File) {
         formData.append(key, value, value.name);
-      }else {
+      } else {
         formData.append(key, typeof value === 'object' && !(value instanceof File) ? JSON.stringify(value) : value?.toString() || '');
       }
-
-      const url_script = 'http://localhost:3000/api/formulario';
-
+    });
+  
+    // Aquí iría la petición HTTP (cuando decidas activarla)
+    /*
+    const url_script = 'http://localhost:3000/api/formulario';
     this.http.post(url_script, formData).subscribe({
-      next:() => alert('Formulario enviado con éxito'),
+      next: () => alert('Formulario enviado con éxito'),
       error: () => alert('Error al enviar el formulario')
     });
-      
-    })
+    */
   }
+    
+
 }
