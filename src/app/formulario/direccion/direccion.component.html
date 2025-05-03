@@ -5,7 +5,11 @@
 
   <div class="row">
     <div class="col-md-6 mb-3">
-      <label for="estado" class="form-label">Estado</label>
+      <div class="d-flex gap-1">
+        <label for="estado" class="form-label">Estado</label>
+        <span class="text-red-500">*</span>
+
+      </div>
       <select id="estado" class="form-select"
               [class.is-invalid]="form.get('estado')?.invalid && form.get('estado')?.touched"
               formControlName="estado">
@@ -18,7 +22,11 @@
     </div>
   
     <div class="col-md-6 mb-3">
-      <label for="ciudad" class="form-label">Ciudad</label>
+      <div class="d-flex gap-1">
+        <label for="ciudad" class="form-label">Ciudad</label>
+        <span class="text-red-500">*</span>
+
+      </div>
       <input type="text" id="ciudad" class="form-control"
              [class.is-invalid]="form.get('ciudad')?.invalid && form.get('ciudad')?.touched"
              formControlName="ciudad" />
@@ -31,7 +39,11 @@
 
   <!-- Sector (ancho completo) -->
   <div class="col-12 mb-3">
-    <label for="sector" class="form-label">Sector</label>
+    <div class="d-flex gap-1">
+      <label for="sector" class="form-label">Sector</label>
+      <span class="text-red-500">*</span>
+
+    </div>
     <input type="text" id="sector" class="form-control"
            [class.is-invalid]="form.get('sector')?.invalid && form.get('sector')?.touched"
            formControlName="sector" />
@@ -42,7 +54,11 @@
 
   <!-- Dirección de habitación (ancho completo) -->
   <div class="col-12 mb-3">
-    <label for="direccion" class="form-label">Dirección de habitación</label>
+    <div class="d-flex gap-1">
+      <label for="direccion" class="form-label">Dirección de habitación</label>
+      <span class="text-red-500">*</span>
+
+    </div>
     <input type="text" id="direccion" class="form-control"
            [class.is-invalid]="form.get('direccion')?.invalid && form.get('direccion')?.touched"
            formControlName="direccion" />
@@ -54,7 +70,11 @@
   <!-- Código y Teléfono 1 (obligatorios) -->
 <div class="row g-3 align-items-center mb-3">
   <div class="col-md-4">
-    <label class="form-label">Código</label>
+    <div class="d-flex gap-1">
+      <label class="form-label">Código</label>
+      <span class="text-red-500">*</span>
+
+    </div>
     <select class="form-select"
             [class.is-invalid]="form.get('codigo1')?.invalid && form.get('codigo1')?.touched"
             formControlName="codigo1">
