@@ -198,28 +198,9 @@ export class FormularioComponent {
   enviarFormulario() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
-      const camposInvalidos = Object.keys(this.form.controls).filter(campo => this.form.get(campo)?.invalid);
-  
-      console.warn('❌ Formulario inválido. Campos con errores:');
-      camposInvalidos.forEach(campo => {
-        const control = this.form.get(campo);
-        console.warn(`- ${campo}:`, control?.errors);
-      });
-  
+      alert('Formulario inválido. Verifique los campos.');
       return;
     }
-  
-    // Preparar datos para consola
-    const visualData: Record<string, any> = {};
-    Object.entries(this.form.value).forEach(([key, value]) => {
-      if (value instanceof File) {
-        visualData[key] = value.name;
-      } else {
-        visualData[key] = value;
-      }
-    });
-  
-    console.log('📝 Datos captados del formulario (resumen):', visualData);
   
     const formData = new FormData();
     Object.entries(this.form.value).forEach(([key, value]) => {
@@ -227,6 +208,22 @@ export class FormularioComponent {
         formData.append(key, value, value.name);
       } else {
         formData.append(key, typeof value === 'object' && !(value instanceof File) ? JSON.stringify(value) : value?.toString() || '');
+      }
+    });
+  
+    const url = 'https://script.google.com/macros/s/AKfycbxPqfh3tLCPQTmIU7fm9_Ean3WrQ85pY4DVN_AoMiFOzLKy5VxLpuedHnzo7jkpxg3yPw/exec'; // La URL que copiaste del Apps Script
+  
+    this.http.post(url, formData).subscribe({
+      next: (response: any) => {
+        if (response.result === 'success') {
+          alert('Registro realizado correctamente.');
+        } else {
+          alert('No se pudo enviar el formulario. Verifique los campos.');
+        }
+      },
+      error: (error) => {
+        alert('Hubo un error al enviar los datos. Intenta nuevamente.');
+        console.error('Error:', error);
       }
     });
   
