@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { CommonModule, NgFor } from '@angular/common';
 import { DatosPersonalesComponent } from './datos-personales/datos-personales.component';
 import { DocumentosComponent } from './documentos/documentos.component';
@@ -8,6 +8,7 @@ import { DireccionComponent } from './direccion/direccion.component';
 import { InformacionAdicionalComponent } from './informacion-adicional/informacion-adicional.component';
 import { ExtrasComponent } from './extras/extras.component';
 import { HeaderComponent } from "../header/header.component";
+import { FormularioService } from "../service/formulario-servicio.service";
 
 
 @Component({
@@ -45,7 +46,7 @@ export class FormularioComponent {
 
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private formularioService: FormularioService) {
 
     this.form = this.fb.group({
       primerNombre: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(20), Validators.pattern(/^[a-zA-ZÁÉÍÓÚÑáéíóúñ\s]+$/)]],
@@ -195,40 +196,85 @@ export class FormularioComponent {
   // }
   
       
+  // enviarFormulario() {
+  //   if (this.form.invalid) {
+  //     this.form.markAllAsTouched();
+  //     alert('Formulario inválido. Verifique los campos.');
+  //     return;
+  //   }
+  
+  //   const formData = new FormData();
+  //   Object.entries(this.form.value).forEach(([key, value]) => {
+  //     if (value instanceof File) {
+  //       formData.append(key, value, value.name);
+  //     } else {
+  //       formData.append(key, typeof value === 'object' && !(value instanceof File) ? JSON.stringify(value) : value?.toString() || '');
+  //     }
+  //   });
+  
+  //   const backendUrl = 'http://localhost:3000/submit-form'; // URL de tu backend Express
+  
+  //   this.http.post(url, formData,{
+  //     headers: new HttpHeaders({
+  //       'Content-Type': 'application/json',
+  //     }),
+  //   }).subscribe({
+  //     next: (response: any) => {
+  //       if (response.result === 'success') {
+  //         alert('Registro realizado correctamente.');
+  //       } else {
+  //         alert('No se pudo enviar el formulario. Verifique los campos.');
+  //       }
+  //     },
+  //     error: (error) => {
+  //       alert('Hubo un error al enviar los datos. Intenta nuevamente.');
+  //       console.error('Error:', error);
+  //     }
+  //   });
+  
+  //   // Aquí iría el envío real si estuviera activo
+  // }
+  
   enviarFormulario() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       alert('Formulario inválido. Verifique los campos.');
       return;
     }
-  
+
     const formData = new FormData();
     Object.entries(this.form.value).forEach(([key, value]) => {
       if (value instanceof File) {
         formData.append(key, value, value.name);
       } else {
-        formData.append(key, typeof value === 'object' && !(value instanceof File) ? JSON.stringify(value) : value?.toString() || '');
+        formData.append(key, value ? value.toString() : '');
       }
     });
-  
-    const url = 'https://script.google.com/macros/s/AKfycbxPqfh3tLCPQTmIU7fm9_Ean3WrQ85pY4DVN_AoMiFOzLKy5VxLpuedHnzo7jkpxg3yPw/exec'; // La URL que copiaste del Apps Script
-  
-    this.http.post(url, formData).subscribe({
-      next: (response: any) => {
-        if (response.result === 'success') {
-          alert('Registro realizado correctamente.');
-        } else {
-          alert('No se pudo enviar el formulario. Verifique los campos.');
-        }
+
+    // Enviar los datos al backend
+    this.formularioService.enviarFormulario(formData).subscribe({
+      next: (response) => {
+        console.log('Formulario enviado al backend:', response);
+
+        // Ahora, una vez que los datos se envían correctamente al backend,
+        // puedes enviarlos a las APIs de Google (si lo deseas).
+        // this.formularioService.enviarDatosAGoogle(this.form.value).subscribe({
+        //   next: (googleResponse) => {
+        //     console.log('Datos enviados a Google:', googleResponse);
+        //     alert('Formulario enviado exitosamente.');
+        //   },
+        //   error: (googleError) => {
+        //     console.error('Error al enviar a Google:', googleError);
+        //     alert('Hubo un problema al enviar los datos a Google.');
+        //   }
+        // });
+        alert('Registro realizado exitosamente.');
+
       },
       error: (error) => {
-        alert('Hubo un error al enviar los datos. Intenta nuevamente.');
-        console.error('Error:', error);
+        console.error('Error al enviar el formulario al backend:', error);
+        alert('Error al enviar el formulario.');
       }
     });
-  
-    // Aquí iría el envío real si estuviera activo
   }
-  
-
 }
