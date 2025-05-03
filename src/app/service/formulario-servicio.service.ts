@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class FormularioService {
 
-  private apiUrl = 'http://localhost:3000/submit-form'; // URL de tu backend
+  private apiUrl = 'https://b1d78443-776b-437d-9012-5a8237673723-00-vjr3kf1x63ey.janeway.replit.dev:8080/submit-form'; // URL de tu backend
 
   constructor(private http: HttpClient) { }
 

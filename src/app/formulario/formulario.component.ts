@@ -269,6 +269,10 @@ export class FormularioComponent {
         //   }
         // });
         alert('Registro realizado exitosamente.');
+        this.form.reset(); // Limpia el formulario
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000)  ;
 
       },
       error: (error) => {
